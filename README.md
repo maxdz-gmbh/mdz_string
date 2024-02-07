@@ -51,9 +51,9 @@ Only shared/dynamically loaded libraries (*.so* and *.dll* files with import lib
 
 **5. Extended error-checking:** all functions preserve internal error-code pointing the problem. It is possible to use strict error-checking (when all preserved error-codes should be *MDZ_ERROR_NONE*) or "relaxed"-checking - when only returned *mdz_false* will indicate error.
 
-**6. Extended control:** strings do only explicit operations. It means for example, when "insert" function is called with auto-reservation flag set in *mdz_false* - it will return error if there is not enough capacity in container. No implicit reservations will be made.
+**6. Extended control:** strings do only explicit operations. It means for example, when "insert" function is called with auto-reservation flag set in *mdz_false* - it will return error if there is not enough capacity in string. No implicit reservations will be made.
 
-**7. Attached usage:** strings should not necessarily use dynamically-allocated memory - which may be not available on your embedded system (or if malloc()/free() are forbidden to use in your safety-critical software). Just attach container/data to your statically-allocated memory and use all strings functionality.
+**7. Attached usage:** strings should not necessarily use dynamically-allocated memory - which may be not available on your embedded system (or if malloc()/free() are forbidden to use in your safety-critical software). Just attach string/data to your statically-allocated memory and use all strings functionality.
 
 **8. Cache-friendly:** it is possible to keep controlling and data parts together in memory using "embedded part".
 
@@ -61,7 +61,7 @@ Only shared/dynamically loaded libraries (*.so* and *.dll* files with import lib
 
 **10. wchar_t support:** also wchar_t strings are supported, with 2 and 4 bytes-large *wchar_t* characters.
 
-**11. Endianness-aware containers:** wchar, utf16 and utf32 containers are endiannes-aware thus may be used to produce and manipulate strings with pre-defined endianness even if endianness of host differs.
+**11. Endianness-aware strings:** wchar, utf16 and utf32 strings are endiannes-aware thus may be used to produce and manipulate strings with pre-defined endianness even if endianness of host differs.
 
 **12. Unicode "surrogate-pairs" awareness:** 2-byte Unicode strings correctly process/distinguish "surrogate-pairs" as 1 Unicode symbol.
 
@@ -69,7 +69,7 @@ Only shared/dynamically loaded libraries (*.so* and *.dll* files with import lib
 
 ## mdz_string Usage
 
-**mdz_unicode** is implemented with strict input parameters checking. It means *mdz_false* or some other error indication will be returned if one or several input parameters are invalid - even if such an invalidity doesn't lead to inconsistence (for example adding or removing 0 items).
+**mdz_string** is implemented with strict input parameters checking. It means *mdz_false* or some other error indication will be returned if one or several input parameters are invalid - even if such an invalidity doesn't lead to inconsistence (for example adding or removing 0 items).
 
 **Test license generation:** - in order to get free test-license, please proceed to our Shop page [maxdz Shop] and register an account. After registration you will be able to obtain free 30-days test-licenses for our products using "Obtain for free" button. 
 Test license data should be used in *mdz_string_init()* call for library initialization.
