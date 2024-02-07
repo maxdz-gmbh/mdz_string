@@ -3,6 +3,7 @@
 ## Table of Contents
 [mdz_string Overview](#mdz_string-Overview)<br>
 [mdz_string Advantages](#mdz_string-Advantages)<br>
+[Performance Comparison](#performance-comparison)
 [mdz_string Usage](#mdz_string-Usage)<br>
 [mdz_ansi Overview](#mdz_ansi-Overview)<br>
 [mdz_wchar Overview](#mdz_wchar-Overview)<br>
@@ -66,6 +67,97 @@ Only shared/dynamically loaded libraries (*.so* and *.dll* files with import lib
 **12. Unicode "surrogate-pairs" awareness:** 2-byte Unicode strings correctly process/distinguish "surrogate-pairs" as 1 Unicode symbol.
 
 **13. Asynchronous execution:** almost all functions of single-byte (ASCII/ANSI) strings and *insert* functions can be executed asynchronously
+
+## Performance Comparison
+
+Performance comparison tables for *[mdz_ansi_find]*() and *[mdz_ansi_firstOf]*() give an idea about *mdz_ansi* library overall performance on different platforms compared to STL and standard C library. Modern implementationsof STL and standard C library are pretty fast, using optimized versions of memory-access functions.
+
+- **[mdz_ansi_find]() Test**
+
+Following tests are executed:
+
+- Test *1/100M*": Find 1 byte - in the end of 100M bytes long string<br>
+- Test *5/100M*": Find 5 bytes long string - in the end of 100M bytes long string<br>
+- Test *10/100M*": Find 10 bytes long string - in the end of 100M bytes long string<br>
+- Test *100/100M*": Find 100 bytes long string - in the end of 100M bytes long string<br>
+- Test *1K/100M*": Find 1K bytes long string - in the end of 100M bytes long string<br>
+- Test *500K/1M*": Find 500K bytes long string - in the end of 1M bytes long string<br>
+- Test *100M-100/100M*": Find "100M minus 100" bytes long string - in the end of 100M bytes long string<br>
+- Test *100M/100M*": Find 100M bytes long string - in 100M bytes long string<br>
+
+For **Windows 10 (64-bit)** on *Intel i5-6600 @ 3.30GHz (4 cores/4 threads)*<br>
+
+**Monotone test** : "long string" and "string to find" are both filled with '1's; on the last position of both strings is '2'
+
+monotone = MDZ_FIND_MONOTONE method<br>
+clib = MDZ_FIND_CLIB method (standard C library)<br>
+brute = MDZ_FIND_BRUTE method<br>
+bmh = MDZ_FIND_BMH method
+
+- VC++ toolset v140 (32-bit)<br>
+(all numbers are in microseconds measured using *QueryPerformanceCounter()* in main execution thread)
+
+| Test  | mdz_ansi, monotone | mdz_ansi, clib | mdz_ansi, brute |  mdz_ansi, bmh |std::string.find() | clib (strstr())|
+| :---:| ---: | ---: | ---: | ---: | ---: | ---: |
+| 1/100M| **70,351** |  |  |  | 162,681 | 70,579 |
+| 5/100M| **407,668** | 460,052 | 3,045,869 | 781,655 | 3,381,061 | 482,075 |
+| 10/100M| 1,334,782 | **707,712** | 4,394,022 | 780,128 | 4,206,329 | 731,395 |
+| 100/100M| 1,333,516 | 10,914,646 | 15,779,350 | **781,370** | 15,652,407 | 11,253,026 |
+| 1K/100M| 1,332,838 | 70,179,989 | 139,398,637 | **781,439** | 139,808,212 | 75,808,535 |
+| 500K/1M| 13,202 | 166,409,422 | 323,375,345 | **9,411** | 324,276,637 | 178,302,908 |
+| 100M-100/100M| 1,262,919 | 10,884,012 | 14,182,350 | **1,066,737** | 14,150,110 | 10,383,086 |
+| 100M/100M| 117,970 | |  |  | 144,573 | **114,565** |
+
+- MinGW/gcc toolset (32-bit)<br>
+(all numbers are in microseconds measured using *QueryPerformanceCounter()* in main execution thread)
+
+| Test  | mdz_ansi, monotone | mdz_ansi, clib | mdz_ansi, brute |  mdz_ansi, bmh |
+| :---:| ---: | ---: | ---: | ---: |
+| 1/100M| 148,067 |  |  |  |
+| 5/100M| **534,070** | 1,599,882 | 6,825,862 | 784,326 |
+| 10/100M| **551,404** | 3,635,378 | 7,898,385 | 783,832 |
+| 100/100M| **550,701** | 32,447,796 | 20,451,496 | 786,006 |
+| 1K/100M| **551,213** | 348,052,489 | 117,762,194 | 784,335 |
+| 500K/1M| 7,851 | 814,620,053 | 246,574,213 | **6,263** |
+| 100M-100/100M| 997,729 | 33,028,357 | 11,705,985| **456,680** |
+| 100M/100M| 328,564 | |  |  |
+
+- **[mdz_ansi_firstOf]() Test**
+
+Following tests are executed:
+
+- Test *1/100M*": Find first of 1 byte - in the end of 100M bytes long string<br>
+- Test *5/100M*": Find first of 5 bytes - in the end of 100M bytes long string<br>
+- Test *20/100M*": Find first of 20 bytes - in the end of 100M bytes long string<br>
+- Test *50/100M*": Find first of 50 bytes - in the end of 100M bytes long string<br>
+- Test *100/100M*": Find first of 100 bytes - in the end of 100M bytes long string<br>
+
+For **Windows 10 (64-bit)** on *Intel i5-6600 @ 3.30GHz (4 cores/4 threads)*<br>
+
+- VC++ toolset v140 (32-bit)<br>
+(all numbers are in microseconds measured using *QueryPerformanceCounter()* in main execution thread)
+
+| Test  | mdz_ansi| std::string.find_first_of() | clib (strcspn())|
+| :---:| ---: | ---: | ---: |
+| 1/100M| **70,078** | 163,666 | 2,085,714 |
+| 5/100M| **370,204** | 3,719,660 | 2,077,677 |
+| 20/100M| **369,162** | 5,714,212 | 2,076,031 |
+| 50/100M| **368,994** | 10,965,401 | 2,078,038 |
+| 100/100M| **369,360** | 18,727,283 | 2,076,740 |
+
+- MinGW/gcc toolset (32-bit)<br>
+(all numbers are in microseconds measured using *QueryPerformanceCounter()* in main execution thread)
+
+| Test  | mdz_ansi|
+| :---:| ---: |
+| 1/100M| 153,511 |
+| 5/100M| 278,387 |
+| 20/100M| 276,389 |
+| 50/100M| 275,956 |
+| 100/100M| 277,709 |
+
+[mdz_ansi_find]: https://github.com/maxdz-gmbh/mdz_ansi/wiki/mdz_ansi_find_async
+[mdz_ansi_firstOf]: https://github.com/maxdz-gmbh/mdz_ansi/wiki/mdz_ansi_firstOf_async
 
 ## mdz_string Usage
 
