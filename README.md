@@ -3,7 +3,7 @@
 ## Table of Contents
 [mdz_string Overview](#mdz_string-Overview)<br>
 [mdz_string Advantages](#mdz_string-Advantages)<br>
-[Performance Comparison](#performance-comparison)
+[Performance Comparison](#performance-comparison)<br>
 [mdz_string Usage](#mdz_string-Usage)<br>
 [mdz_ansi Overview](#mdz_ansi-Overview)<br>
 [mdz_wchar Overview](#mdz_wchar-Overview)<br>
