@@ -168,14 +168,10 @@ Test license data should be used in *mdz_string_init()* call for library initial
 
 **NOTE:** All 0.x releases are kind of "beta-versions" and can be used 1) only with test-license (during test period of 30 days, with necessity to re-generate license for the next 30 days test period) and 2) without expectations of interface backward-compatibility.
 
-Several usage-scenarios are possible:
-- low-level - raw C interface, using *mdz_string.h*, *mdz_ansi.h*, *mdz_utf8.h*, *mdz_utf16.h*, etc C-header files
-- higher-level - using *MdzString*, *MdzAnsi*, *MdzUtf8*, *MdzUtf16*, etc C++ "wrappers" around C-header files functions
-
 [mdz_string Wiki]: https://github.com/maxdz-gmbh/mdz_string/wiki/mdz_string-overview
 [maxdz Shop]: https://maxdz.com/shop.php
 
-#### Code Example (low-level use)
+#### Code Example
 
 *mdz_string_init()* with license information should be called for library initialization before any subsequent calls:
 
