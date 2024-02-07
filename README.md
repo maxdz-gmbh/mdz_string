@@ -10,7 +10,6 @@
 [mdz_utf16 Overview](#mdz_utf16-Overview)<br>
 [mdz_utf32 Overview](#mdz_utf32-Overview)<br>
 [Licensing info](#Licensing-info)<br>
-[Credits](#Credits)
 
 ## mdz_string Overview
 
