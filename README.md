@@ -41,6 +41,7 @@ Only shared/dynamically loaded libraries (*.so* and *.dll* files with import lib
 
 [mdz_string]: https://github.com/maxdz-gmbh/mdz_string
 [maxdz Software GmbH]: https://maxdz.com/
+[mdz_ansi_alg]: https://github.com/maxdz-gmbh/mdz_ansi_alg
 
 ## mdz_string Advantages
 
