@@ -1,4 +1,4 @@
-**September 2024 NOTE:** This repo is obsolete. Please use [mdz_ansi_alg] project/repo instead.
+**September 2024 NOTE:** This repo is obsolete. Please use [mdz_ansi_alg], [mdz_ansi_16] and forthcoming repos for ansi/unicode strings instead.
 
 **NOTE:** All 0.x releases are kind of "alpha-versions" without expectations of API backward-compatibility.
 
@@ -42,6 +42,7 @@ Only shared/dynamically loaded libraries (*.so* and *.dll* files with import lib
 [mdz_string]: https://github.com/maxdz-gmbh/mdz_string
 [maxdz Software GmbH]: https://maxdz.com/
 [mdz_ansi_alg]: https://github.com/maxdz-gmbh/mdz_ansi_alg
+[mdz_ansi_16]: https://github.com/maxdz-gmbh/mdz_ansi_16
 
 ## mdz_string Advantages
 
