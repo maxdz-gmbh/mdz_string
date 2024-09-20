@@ -1,6 +1,6 @@
 **September 2024 NOTE:** This repo is obsolete. Please use [mdz_ansi_alg] project/repo instead.
 
-**NOTE:** All 0.x releases are kind of "alpha-versions" without expectations of interface backward-compatibility.
+**NOTE:** All 0.x releases are kind of "alpha-versions" without expectations of API backward-compatibility.
 
 ## Table of Contents
 [mdz_string Overview](#mdz_string-Overview)<br>
