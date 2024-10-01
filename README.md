@@ -1,4 +1,9 @@
-**September 2024 NOTE:** This repo is obsolete. Please use [mdz_ansi_alg], [mdz_ansi_16] and forthcoming repos for ansi/unicode strings instead.
+**September 2024 NOTE:** This repo is obsolete. Please use following repos for processing single-byte (ASCII/ANSI) strings instead:
+- [mdz_ansi_alg] for string processing algorithms
+- [mdz_ansi_16] for short attached strings
+- [mdz_ansi_dyn] for long dynamically-allocated strings
+
+Repos with unicode-strings functions (for UTF-8, UTF-16, UTF-32, wchar_t) will come soon.
 
 **NOTE:** All 0.x releases are kind of "alpha-versions" without expectations of API backward-compatibility.
 
